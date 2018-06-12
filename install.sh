@@ -8,6 +8,7 @@
 cp -rf ./ /home/$(whoami)
 cd /home/$(whoami)
 rm install.sh README.md
+rm -rf .git
 
 # ZSH environment setup
 rm -rf .oh-my-zsh
