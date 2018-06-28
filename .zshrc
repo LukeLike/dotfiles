@@ -104,8 +104,12 @@ alias docker_clear='docker rm -v $(docker ps -aq -f status=exited)'
 
 zstyle ':completion::complete:*' use-cache 1
 
-# specifig aliases
-if [[ -f ~/.zshrc.d/alias.sh ]]; then
-    source ~/.zshrc.d/alias.sh
+# source config files in .zshrc.d
+if [[ -d ~/.zshrc.d ]]; then
+    for i in ~/.zshrc.d/*.sh; do
+        if [[ -f $i ]]; then
+            source $i
+        fi
+    done
 fi
 
