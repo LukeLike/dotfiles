@@ -102,6 +102,8 @@ map k gkzz
 inoremap jj <ESC>
 map <SPACE> $
 map ; :
+imap <C-W> <ESC>:w<CR>a
+nmap <C-W> :w<CR>
 
 " brackets matching
 inoremap {<CR> {<CR>}<ESC>O
