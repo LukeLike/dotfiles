@@ -91,6 +91,10 @@ set wrap linebreak textwidth=0
 set laststatus=2
 let &t_Co=256
 
+if &diff
+    set diffopt=filler,context:1000000
+endif
+
 " file encoding
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936;
 set termencoding=utf-8
@@ -102,8 +106,6 @@ map k gkzz
 inoremap jj <ESC>
 map <SPACE> $
 map ; :
-imap <C-W> <ESC>:w<CR>a
-nmap <C-W> :w<CR>
 
 " brackets matching
 inoremap {<CR> {<CR>}<ESC>O
