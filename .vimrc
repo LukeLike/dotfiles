@@ -135,6 +135,9 @@ call vundle#begin()
 " Vundle itself
 Plugin 'VundleVim/Vundle.vim'
 
+" vim-easymotion
+Plugin 'easymotion/vim-easymotion'
+
 " vim-surround
 Plugin 'tpope/vim-surround'
 
