@@ -135,6 +135,11 @@ call vundle#begin()
 " Vundle itself
 Plugin 'VundleVim/Vundle.vim'
 
+" NERD tree
+Plugin 'scrooloose/nerdtree'
+nmap <c-b> :NERDTreeToggle<CR>
+imap <c-b> <ESC>:NERDTreeToggle<CR>
+
 " vim-easymotion
 Plugin 'easymotion/vim-easymotion'
 
