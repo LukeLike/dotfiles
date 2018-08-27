@@ -109,10 +109,18 @@ map ; :
 
 " brackets matching
 inoremap {<CR> {<CR>}<ESC>O
-inoremap ( ()<ESC>i
+inoremap ( (<c-r>=CheckAndPrint(')')<CR><ESC>i
 inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap [ []<ESC>i
+inoremap [ [<c-r>=CheckAndPrint(']')<CR><ESC>i
 inoremap ] <c-r>=ClosePair(']')<CR>
+function! CheckAndPrint(char)
+    let cur = getline('.')[col('.')-1]
+    if cur == "" || cur == " " || cur == ")" || cur == "]" || cur == "}"
+        return a:char
+    else
+        return "\<Right>"
+    endif
+endfunction
 function! ClosePair(char)
     if getline('.')[col('.')-1] == a:char
         return "\<Right>"
@@ -140,6 +148,9 @@ Plugin 'scrooloose/nerdtree'
 nmap <c-b> :NERDTreeToggle<CR>
 imap <c-b> <ESC>:NERDTreeToggle<CR>
 
+" rust.vim
+Plugin 'rust-lang/rust.vim'
+
 " vim-easymotion
 Plugin 'easymotion/vim-easymotion'
 
@@ -148,6 +159,12 @@ Plugin 'tpope/vim-surround'
 
 " vim-repeat
 Plugin 'tpope/vim-repeat'
+
+" rainbow (hightlight brackets)
+Plugin 'oblitum/rainbow'
+let g:rainbow_active = 1
+let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
+let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
 " airline
 Plugin 'vim-airline/vim-airline'
