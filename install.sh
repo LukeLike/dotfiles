@@ -5,8 +5,8 @@
 #    sudo apt install zsh git vim tmux wget -y
 
 # Copy configuration files
-cp -rf ./ /home/$(whoami)
-cd /home/$(whoami)
+cp -rf ./ ~/
+cd ~/
 rm install.sh README.md
 rm -rf .git
 

@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/$(whoami)/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -93,8 +93,7 @@ export TERM=xterm-256color
 
 # export CXX='/usr/bin/clang++'
 
-# export PATH="/home/luke/anaconda3/bin:$PATH"
-export PATH=/home/luke/bin:~/.npm-global/bin:$PATH
+export PATH=~/bin:~/.npm-global/bin:$PATH
 alias yd='ydcv -s'
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
