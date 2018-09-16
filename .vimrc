@@ -166,6 +166,12 @@ let g:rainbow_active = 1
 let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
 let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
+" tslime (send text from vim buffer to tmux buffer)
+Plugin 'sjl/tslime.vim'
+let g:tslime_normal_mapping = '<leader>t'
+let g:tslime_visual_mapping = '<leader>t'
+let g:tslime_vars_mapping = '<leader>T'
+
 " airline
 Plugin 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
