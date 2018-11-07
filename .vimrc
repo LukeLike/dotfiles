@@ -38,7 +38,8 @@ endif
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
-  colorscheme Tomorrow-Night
+  colorscheme gruvbox
+  set background=dark
   set cursorline
 endif
 
@@ -200,6 +201,11 @@ let g:airline_symbols.maxlinenr = ' ln'
 
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_theme='wombat'
+
+" Async Run
+Plugin 'skywind3000/asyncrun.vim'
+let g:asyncrun_mode=0
+let g:asyncrun_open=8
 
 " YouCompleteMe
 " Plugin 'Valloric/YouCompleteMe'
