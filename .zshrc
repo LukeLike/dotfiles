@@ -103,6 +103,11 @@ alias docker_clear='docker rm -v $(docker ps -aq -f status=exited)'
 
 zstyle ':completion::complete:*' use-cache 1
 
+# Set dircolors
+if [[ -e ~/.dircolors ]]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
 # source config files in .zshrc.d
 if [[ -d ~/.zshrc.d ]]; then
     for i in ~/.zshrc.d/*.sh; do
