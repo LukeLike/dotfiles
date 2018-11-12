@@ -206,6 +206,7 @@ let g:airline_theme='wombat'
 Plugin 'skywind3000/asyncrun.vim'
 let g:asyncrun_mode=0
 let g:asyncrun_open=8
+noremap <C-j> :call asyncrun#quickfix_toggle(8)<cr>
 
 " YouCompleteMe
 " Plugin 'Valloric/YouCompleteMe'
@@ -214,3 +215,5 @@ let g:asyncrun_open=8
 
 call vundle#end()
 filetype plugin indent on
+set exrc
+set secure
