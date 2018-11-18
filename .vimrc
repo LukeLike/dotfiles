@@ -41,6 +41,8 @@ if &t_Co > 2 || has("gui_running")
   colorscheme gruvbox
   set background=dark
   set cursorline
+  highlight Normal ctermbg=NONE
+  highlight NonText ctermbg=NONE
 endif
 
 " Only do this part when compiled with support for autocommands.
