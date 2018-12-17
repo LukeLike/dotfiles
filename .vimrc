@@ -15,10 +15,10 @@ set backspace=indent,eol,start
 " else
 "   set backup" keep a backup file
 " endif
-set history=50" keep 50 lines of command line history
-set ruler" show the cursor position all the time
-set showcmd" display incomplete commands
-set incsearch" do incremental searching
+set history=50 " keep 50 lines of command line history
+set ruler " show the cursor position all the time
+set showcmd " display incomplete commands
+set incsearch " do incremental searching
 
 
 " Don't use Ex mode, use Q for formatting
@@ -111,26 +111,26 @@ map <SPACE> $
 map ; :
 
 " brackets matching
-inoremap {<CR> {<CR>}<ESC>O
-inoremap ( (<c-r>=CheckAndPrint(')')<CR><ESC>i
-inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap [ [<c-r>=CheckAndPrint(']')<CR><ESC>i
-inoremap ] <c-r>=ClosePair(']')<CR>
-function! CheckAndPrint(char)
-    let cur = getline('.')[col('.')-1]
-    if cur == "" || cur == " " || cur == ")" || cur == "]" || cur == "}"
-        return a:char
-    else
-        return "\<Right>"
-    endif
-endfunction
-function! ClosePair(char)
-    if getline('.')[col('.')-1] == a:char
-        return "\<Right>"
-    else
-        return a:char
-    endif
-endfunction
+" inoremap {<CR> {<CR>}<ESC>O
+" inoremap ( (<c-r>=CheckAndPrint(')')<CR><ESC>i
+" inoremap ) <c-r>=ClosePair(')')<CR>
+" inoremap [ [<c-r>=CheckAndPrint(']')<CR><ESC>i
+" inoremap ] <c-r>=ClosePair(']')<CR>
+" function! CheckAndPrint(char)
+"     let cur = getline('.')[col('.')-1]
+"     if cur == "" || cur == " " || cur == ")" || cur == "]" || cur == "}"
+"         return a:char
+"     else
+"         return "\<Right>"
+"     endif
+" endfunction
+" function! ClosePair(char)
+"     if getline('.')[col('.')-1] == a:char
+"         return "\<Right>"
+"     else
+"         return a:char
+"     endif
+" endfunction
 
 " convert tab to 4 spaces:
 set tabstop=4
@@ -182,9 +182,7 @@ let g:rainbow_conf = {
 	\		'vim': {
 	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
 	\		},
-	\		'html': {
-	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-	\		},
+    \       'html': 0,
 	\		'css': 0,
 	\	}
 	\}
@@ -209,6 +207,12 @@ Plugin 'skywind3000/asyncrun.vim'
 let g:asyncrun_mode=0
 let g:asyncrun_open=8
 noremap <C-j> :call asyncrun#quickfix_toggle(8)<cr>
+noremap <leader>r :AsyncRun<SPACE>
+
+" Auto pair brackets
+" Plugin 'jiangmiao/auto-pairs'
+Plugin 'lukelike/auto-pairs'
+let g:AutoPairsFlyMode=1
 
 " YouCompleteMe
 " Plugin 'Valloric/YouCompleteMe'
