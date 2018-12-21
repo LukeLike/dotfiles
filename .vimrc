@@ -150,6 +150,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 nmap <c-b> :NERDTreeToggle<CR>
 imap <c-b> <ESC>:NERDTreeToggle<CR>
+let NERDTreeNodeDelimiter="\t"
 
 " rust.vim
 Plugin 'rust-lang/rust.vim'
@@ -212,7 +213,10 @@ noremap <leader>r :AsyncRun<SPACE>
 " Auto pair brackets
 " Plugin 'jiangmiao/auto-pairs'
 Plugin 'lukelike/auto-pairs'
-let g:AutoPairsFlyMode=1
+let g:AutoPairs={'(':')', '[':']', '{':'}'}
+
+" Jedi Vim
+Plugin 'davidhalter/jedi-vim'
 
 " YouCompleteMe
 " Plugin 'Valloric/YouCompleteMe'
