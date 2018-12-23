@@ -14,10 +14,10 @@ sudo apt install zsh git vim tmux wget -y
     - .vim/colors/Tomorrow-Night.vim
     - .vim/after/ftplugin/\*.vim (setting for different filetypes)
     - .condarc
-    - .tmux.conf.local
+    - .tmux.conf (general settings, mostly taken from [gpakosz/.tmux](https://github.com/gpakosz/.tmux.git))
+    - .tmux.conf.local (local settings)
 4. List of packages to install:
     - oh my zsh
     - zsh autosuggestion
     - vundle
-    - oh my tmux
 
