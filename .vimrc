@@ -166,7 +166,7 @@ Plugin 'tpope/vim-repeat'
 
 " rainbow (hightlight brackets)
 Plugin 'luochen1990/rainbow'
-let g:rainbow_active = 1
+let g:rainbow_active = 0
 let g:rainbow_conf = {
 	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
 	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
@@ -197,7 +197,9 @@ let g:tslime_vars_mapping = '<leader>T'
 " airline
 Plugin 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_symbols = {}
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
 let g:airline_symbols.maxlinenr = ' ln'
 
 Plugin 'vim-airline/vim-airline-themes'
@@ -217,6 +219,7 @@ let g:AutoPairs={'(':')', '[':']', '{':'}'}
 
 " Jedi Vim
 Plugin 'davidhalter/jedi-vim'
+let g:jedi#rename_command="<leader>rn"
 
 " YouCompleteMe
 " Plugin 'Valloric/YouCompleteMe'
