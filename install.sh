@@ -11,14 +11,14 @@ rm install.sh README.md
 rm -rf .git
 
 # ZSH environment setup
-if [[ -d ~/.oh-my-zsh ]] then
+if [[ -d ~/.oh-my-zsh ]]; then
     mv ~/.oh-my-zsh ~/.oh-my-zsh.bak
 fi
 rm -rf .oh-my-zsh
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-if [[ -d ~/.oh-my-zsh.bak ]] then
-    cp -rf ~/.oh-my-zsh.bak/custom ~/.oh-my-zsh/custom
+if [[ -d ~/.oh-my-zsh.bak ]]; then
+    cp -rf ~/.oh-my-zsh.bak/custom ~/.oh-my-zsh/
 fi
 
 # fzf installation
