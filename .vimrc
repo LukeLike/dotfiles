@@ -89,10 +89,14 @@ endif
 
 " my version of settings:
 set number
+set relativenumber
 set nobackup
 set wrap linebreak textwidth=0
 set laststatus=2
 let &t_Co=256
+set colorcolumn=80
+set smartindent
+set autoindent
 
 if &diff
     set diffopt=filler,context:1000000
@@ -104,10 +108,13 @@ set termencoding=utf-8
 set encoding=utf-8
 
 " key map:
+nnoremap <SPACE> <Nop>
+let mapleader="\<SPACE>"
+
 map j gjzz
 map k gkzz
 inoremap jj <ESC>
-map <SPACE> $
+" map <SPACE> $
 map ; :
 
 " brackets matching
@@ -200,7 +207,8 @@ let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline_symbols.maxlinenr = ' ln'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
 
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_theme='wombat'
@@ -214,12 +222,18 @@ noremap <leader>r :AsyncRun<SPACE>
 
 " Auto pair brackets
 " Plugin 'jiangmiao/auto-pairs'
-Plugin 'lukelike/auto-pairs'
-let g:AutoPairs={'(':')', '[':']', '{':'}'}
+" Plugin 'lukelike/auto-pairs'
+" let g:AutoPairs={'(':')', '[':']', '{':'}'}
 
 " Jedi Vim
 Plugin 'davidhalter/jedi-vim'
 let g:jedi#rename_command="<leader>rn"
+
+" fzf.vim
+set rtp+=~/.fzf
+Plugin 'junegunn/fzf.vim'
+nmap <leader>p :Buffers<CR>
+nmap <leader>o :Files<CR>
 
 " YouCompleteMe
 " Plugin 'Valloric/YouCompleteMe'
@@ -230,3 +244,4 @@ call vundle#end()
 filetype plugin indent on
 set exrc
 set secure
+

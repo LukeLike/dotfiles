@@ -6,7 +6,7 @@ export ZSH=~/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="ys"
+ZSH_THEME="luke-ys"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -50,7 +50,7 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ubuntu docker zsh-autosuggestions cargo)
+plugins=(git ubuntu docker zsh-autosuggestions cargo shrink-path)
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
@@ -116,4 +116,7 @@ if [[ -d ~/.zshrc.d ]]; then
         fi
     done
 fi
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
