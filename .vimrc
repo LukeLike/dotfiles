@@ -1,53 +1,24 @@
+" Basic vim settings {{{
+" =======================================================================
+
 " tarted as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
 endif
 
+
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" keep 50 lines of command line history.
+set history=50
 
-" if has("vms")
-"   set nobackup" do not keep a backup file, use versions instead
-" else
-"   set backup" keep a backup file
-" endif
-set history=50 " keep 50 lines of command line history
-set ruler " show the cursor position all the time
-set showcmd " display incomplete commands
-set incsearch " do incremental searching
-
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-  colorscheme gruvbox
-  set background=dark
-  set cursorline
-  highlight Normal ctermbg=NONE
-  highlight NonText ctermbg=NONE
-endif
+" enable settings embedded in the files.
+set modeline
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-
   " Enable file type detection.
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
@@ -75,9 +46,17 @@ if has("autocmd")
 
 else
 
-  set autoindent" always set autoindenting on
+  set autoindent " always set autoindenting on
 
 endif " has("autocmd")
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
@@ -87,92 +66,138 @@ if !exists(":DiffOrig")
   \ | wincmd p | diffthis
 endif
 
-" my version of settings:
-set number
-set relativenumber
-set nobackup
-set wrap linebreak textwidth=0
-set laststatus=2
-let &t_Co=256
-set colorcolumn=80
-set smartindent
-set autoindent
-
 if &diff
-    set diffopt=filler,context:1000000
+  set diffopt=filler,context:1000000
 endif
+
+set nobackup
 
 " file encoding
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936;
 set termencoding=utf-8
 set encoding=utf-8
 
-" key map:
-nnoremap <SPACE> <Nop>
-let mapleader="\<SPACE>"
-
-map j gjzz
-map k gkzz
-inoremap jj <ESC>
-" map <SPACE> $
-map ; :
-
-" brackets matching
-" inoremap {<CR> {<CR>}<ESC>O
-" inoremap ( (<c-r>=CheckAndPrint(')')<CR><ESC>i
-" inoremap ) <c-r>=ClosePair(')')<CR>
-" inoremap [ [<c-r>=CheckAndPrint(']')<CR><ESC>i
-" inoremap ] <c-r>=ClosePair(']')<CR>
-" function! CheckAndPrint(char)
-"     let cur = getline('.')[col('.')-1]
-"     if cur == "" || cur == " " || cur == ")" || cur == "]" || cur == "}"
-"         return a:char
-"     else
-"         return "\<Right>"
-"     endif
-" endfunction
-" function! ClosePair(char)
-"     if getline('.')[col('.')-1] == a:char
-"         return "\<Right>"
-"     else
-"         return a:char
-"     endif
-" endfunction
-
-" convert tab to 4 spaces:
+" set the number of spaces for an indent level to 4
+" and also map tab to spaces
 set tabstop=4
 set expandtab
 set shiftwidth=4
 set softtabstop=4
 
-" Vundle configuration:
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" Vundle itself
-Plugin 'VundleVim/Vundle.vim'
 
-" NERD tree
-Plugin 'scrooloose/nerdtree'
-nmap <c-b> :NERDTreeToggle<CR>
-imap <c-b> <ESC>:NERDTreeToggle<CR>
-let NERDTreeNodeDelimiter="\t"
+" =======================================================================
+" }}}
 
-" rust.vim
-Plugin 'rust-lang/rust.vim'
 
-" vim-easymotion
-Plugin 'easymotion/vim-easymotion'
+" Appearance {{{
+" =======================================================================
 
-" vim-surround
-Plugin 'tpope/vim-surround'
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+  set incsearch " do incremental searching
+  colorscheme gruvbox
+  set background=dark
+  set cursorline
+  highlight Normal ctermbg=NONE
+  highlight NonText ctermbg=NONE
+endif
 
-" vim-repeat
-Plugin 'tpope/vim-repeat'
+set ruler " show the cursor position all the time
+set showcmd " display incomplete commands
 
-" rainbow (hightlight brackets)
-Plugin 'luochen1990/rainbow'
+set number
+set relativenumber
+
+set laststatus=2
+set smartindent
+set autoindent
+
+set wrap linebreak textwidth=0
+set colorcolumn=80
+
+let &t_Co=256
+
+" =======================================================================
+" }}}
+
+
+" Key Mapping {{{
+" =======================================================================
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
+" Map leader key to <SPACE>
+nnoremap <SPACE> <Nop>
+let mapleader="\<SPACE>"
+
+map ; :
+inoremap jk <ESC>
+
+nnoremap <expr> j v:count ? 'j' : 'gjzz'
+nnoremap <expr> k v:count ? 'k' : 'gkzz'
+
+" =======================================================================
+" }}}
+
+
+" Plugins (using 'junegunn/vim-plug') {{{
+" =======================================================================
+call plug#begin('~/.vim/plugged')
+
+" Appearance
+" =======================================================================
+" hightlight brackets
+Plug 'luochen1990/rainbow'
+" status line
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" =======================================================================
+
+
+" Editor Enhancement
+" =======================================================================
+Plug 'easymotion/vim-easymotion'
+Plug 'lukelike/auto-pairs'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+" =======================================================================
+
+
+" Additional Functionalities
+" =======================================================================
+Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" file tree
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" send text from vim buffer to tmux buffer
+Plug 'sjl/tslime.vim'
+
+Plug 'skywind3000/asyncrun.vim'
+" =======================================================================
+
+
+" Languages Plugins
+" =======================================================================
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" =======================================================================
+call plug#end()
+" =======================================================================
+" }}}
+
+
+" Plugin Settings {{{
+" =======================================================================
+" luochen1990/rainbow
 let g:rainbow_active = 0
 let g:rainbow_conf = {
 	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
@@ -195,53 +220,46 @@ let g:rainbow_conf = {
 	\	}
 	\}
 
-" tslime (send text from vim buffer to tmux buffer)
-Plugin 'sjl/tslime.vim'
-let g:tslime_normal_mapping = '<leader>t'
-let g:tslime_visual_mapping = '<leader>t'
-let g:tslime_vars_mapping = '<leader>T'
-
-" airline
-Plugin 'vim-airline/vim-airline'
+" vim-airline/vim-airline
 let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
-
-Plugin 'vim-airline/vim-airline-themes'
 let g:airline_theme='wombat'
 
-" Async Run
-Plugin 'skywind3000/asyncrun.vim'
+" scrooloose/nerdtree
+nmap <c-b> :NERDTreeToggle<CR>
+imap <c-b> <ESC>:NERDTreeToggle<CR>
+let NERDTreeNodeDelimiter="\t"
+
+" sjl/tslime.vim
+let g:tslime_normal_mapping = '<leader>t'
+let g:tslime_visual_mapping = '<leader>t'
+let g:tslime_vars_mapping = '<leader>T'
+
+" skywind3000/asyncrun.vim
 let g:asyncrun_mode=0
 let g:asyncrun_open=8
 noremap <C-j> :call asyncrun#quickfix_toggle(8)<cr>
 noremap <leader>r :AsyncRun<SPACE>
 
-" Auto pair brackets
-" Plugin 'jiangmiao/auto-pairs'
-" Plugin 'lukelike/auto-pairs'
-" let g:AutoPairs={'(':')', '[':']', '{':'}'}
+" lukelike/auto-pairs
+let g:AutoPairs={'(':')', '[':']', '{':'}'}
 
-" Jedi Vim
-Plugin 'davidhalter/jedi-vim'
+" davidhalter/jedi-vim
 let g:jedi#rename_command="<leader>rn"
 
-" fzf.vim
-set rtp+=~/.fzf
-Plugin 'junegunn/fzf.vim'
+" junegunn/fzf.vim
 nmap <leader>p :Buffers<CR>
 nmap <leader>o :Files<CR>
+" =======================================================================
+" }}}
 
-" YouCompleteMe
-" Plugin 'Valloric/YouCompleteMe'
-" let g:ycm_extra_conf_globlist = ['~/*']
-" let g:ycm_server_python_interpreter = '/usr/bin/python3'
-
-call vundle#end()
-filetype plugin indent on
+" enable folder specific .vimrc files
 set exrc
 set secure
+
+" vim:set foldmethod=marker foldlevel=0 sts=2 sw=2 ts=2 expandtab:
 
