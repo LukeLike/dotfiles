@@ -175,6 +175,7 @@ Plug 'tpope/vim-surround'
 " =======================================================================
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'majutsushi/tagbar'
 
 " file tree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -187,7 +188,10 @@ Plug 'skywind3000/asyncrun.vim'
 
 " Languages Plugins
 " =======================================================================
+" Python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+" Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " =======================================================================
 call plug#end()
@@ -254,6 +258,10 @@ let g:jedi#rename_command="<leader>rn"
 " junegunn/fzf.vim
 nmap <leader>p :Buffers<CR>
 nmap <leader>o :Files<CR>
+
+" majutsushi/tagbar
+let g:airline#extensions#tagbar#enabled = 0
+nmap <leader>tb :TagbarToggle<CR>
 " =======================================================================
 " }}}
 
