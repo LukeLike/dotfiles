@@ -166,6 +166,7 @@ Plug 'vim-airline/vim-airline-themes'
 " =======================================================================
 Plug 'easymotion/vim-easymotion'
 Plug 'lukelike/auto-pairs'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 " =======================================================================
