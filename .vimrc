@@ -270,5 +270,5 @@ nmap <leader>tb :TagbarToggle<CR>
 set exrc
 set secure
 
-" vim:set foldmethod=marker foldlevel=0 sts=2 sw=2 ts=2 expandtab:
+" vim:set foldmethod=marker foldlevel=0 sts=2 sw=2 ts=2 expandtab nomodeline:
 
