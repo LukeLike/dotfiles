@@ -109,14 +109,18 @@ set ruler " show the cursor position all the time
 set showcmd " display incomplete commands
 
 set number
-set relativenumber
+if exists('&relativenumber')
+  set relativenumber
+endif
 
 set laststatus=2
 set smartindent
 set autoindent
 
 set wrap linebreak textwidth=0
-set colorcolumn=80
+if exists('&colorcolumn')
+  set colorcolumn=80
+endif
 
 let &t_Co=256
 
