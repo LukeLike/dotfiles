@@ -148,6 +148,9 @@ inoremap jk <ESC>
 nnoremap <expr> j v:count ? 'j' : 'gjzz'
 nnoremap <expr> k v:count ? 'k' : 'gkzz'
 
+" search selected text in visual mode
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
+
 " =======================================================================
 " }}}
 
@@ -269,6 +272,7 @@ let g:airline#extensions#tagbar#enabled = 0
 nmap <leader>tb :TagbarToggle<CR>
 " =======================================================================
 " }}}
+
 
 " enable folder specific .vimrc files
 set exrc
