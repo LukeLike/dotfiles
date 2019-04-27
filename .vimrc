@@ -151,6 +151,9 @@ nnoremap <expr> k v:count ? 'k' : 'gkzz'
 " search selected text in visual mode
 vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 
+" <Ctrl-l> redraws the screen and REMOVES ANY SEARCH HIGHLIGHTING
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
 " =======================================================================
 " }}}
 
