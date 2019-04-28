@@ -84,6 +84,9 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
+" make <Left><Right> available to get across EOL
+set whichwrap+=<,>
+
 
 " =======================================================================
 " }}}
