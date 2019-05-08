@@ -280,6 +280,11 @@ nmap <leader>tb :TagbarToggle<CR>
 " }}}
 
 
+" Load the settings for local machine
+if !empty(glob("$HOME/.vimrc.local"))
+  source $HOME/.vimrc.local
+endif
+
 " enable folder specific .vimrc files
 set exrc
 set secure
