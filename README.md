@@ -17,7 +17,7 @@ sudo apt install zsh git vim tmux wget -y
     - .tmux.conf (general settings, mostly taken from [gpakosz/.tmux](https://github.com/gpakosz/.tmux.git))
     - .tmux.conf.local (local settings)
 4. List of packages to install:
-    - oh my zsh
-    - zsh autosuggestion
-    - vundle
+    - [oh my zsh](https://github.com/robbyrussell/oh-my-zsh)
+    - [zsh autosuggestion](https://github.com/zsh-users/zsh-autosuggestions)
+    - [vim-plug](https://github.com/junegunn/vim-plug)
 
