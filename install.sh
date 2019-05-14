@@ -17,6 +17,9 @@ fi
 
 # ZSH environment setup
 if [[ -d ~/.oh-my-zsh ]]; then
+    if [[ ! -d ~/.oh-my-zsh.bak ]]; then
+        mkdir ~/.oh-my-zsh.bak
+    fi
     cp -rf  ~/.oh-my-zsh/* ~/.oh-my-zsh.bak
 fi
 rm -rf .oh-my-zsh
