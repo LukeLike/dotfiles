@@ -1,4 +1,4 @@
-set ts=2
-set sts=2
-set shiftwidth=2
-set expandtab
+setlocal ts=2
+setlocal sts=2
+setlocal shiftwidth=2
+setlocal expandtab
