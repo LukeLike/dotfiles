@@ -13,6 +13,7 @@ sudo apt install zsh git vim tmux wget -y
     - .pip/pip.conf
     - .vim/colors/Tomorrow-Night.vim
     - .vim/after/ftplugin/\*.vim (setting for different filetypes)
+    - .vim/after/UltiSnips/\*.snippets (snippets for [UltiSnips](https://github.com/SirVer/ultisnips))
     - .condarc
     - .tmux.conf (general settings, mostly taken from [gpakosz/.tmux](https://github.com/gpakosz/.tmux.git))
     - .tmux.conf.local (local settings)
