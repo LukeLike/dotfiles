@@ -5,7 +5,7 @@
 #    sudo apt install zsh git vim tmux wget curl -y
 
 # Copy configuration files
-cp -rf --backup --suffix=.bak ./ ~/
+cp -rf --backup=numbered ./ ~/
 cd ~/
 rm install.sh README.md archive.sh
 rm -rf .git
