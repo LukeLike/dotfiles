@@ -96,41 +96,6 @@ let g:tex_flavor="latex"
 " }}}
 
 
-" settings for GVim and Windows {{{
-if has("gui_running")
-  let $LANG='en_US'
-  set langmenu=en_US
-  source $VIMRUNTIME/delmenu.vim
-  source $VIMRUNTIME/menu.vim
-  set guioptions-=m
-  set guioptions-=T
-  set guifont=Consolas:h11
-
-  set lines=32
-  set columns=85
-  set clipboard=unnamed,unnamedplus
-  " disable IME when entering Normal mode
-  set noimdisable
-  " support for formating CJK characters
-  set formatoptions+=mB
-
-  nmap <leader>sc <ESC>:setlocal spell spelllang=en_us<CR>
-  nmap <leader>ss <ESC>:setlocal nospell<CR>
-  vmap <leader>c "+y
-  nmap <leader>v "+p
-
-  nnoremap <M-Space> :simalt ~<cr>
-  inoremap <M-Space> <esc>:simalt ~<cr>
-endif
-
-if has("win32")
-  set pythondll=C:\Applications\Miniconda3\envs\py27_32\python27.dll
-  set pythonhome=C:\Applications\Miniconda3\envs\py27_32
-  set noswapfile
-endif
-" }}}
-
-
 " Appearance {{{
 " =======================================================================
 
@@ -370,6 +335,41 @@ let g:markdown_mapping_switch_status = "<LocalLeader>s"
 
 
 " =======================================================================
+" }}}
+
+
+" settings for GVim and Windows {{{
+if has("gui_running")
+  let $LANG='en_US'
+  set langmenu=en_US
+  source $VIMRUNTIME/delmenu.vim
+  source $VIMRUNTIME/menu.vim
+  set guioptions-=m
+  set guioptions-=T
+  set guifont=Consolas:h11
+
+  set lines=32
+  set columns=85
+  set clipboard=unnamed,unnamedplus
+  " disable IME when entering Normal mode
+  set noimdisable
+  " support for formating CJK characters
+  set formatoptions+=mB
+
+  nmap <leader>sc <ESC>:setlocal spell spelllang=en_us<CR>
+  nmap <leader>ss <ESC>:setlocal nospell<CR>
+  vmap <leader>c "+y
+  nmap <leader>v "+p
+
+  nnoremap <M-Space> :simalt ~<cr>
+  inoremap <M-Space> <esc>:simalt ~<cr>
+endif
+
+if has("win32")
+  set pythondll=C:\Applications\Miniconda3\envs\py27_32\python27.dll
+  set pythonhome=C:\Applications\Miniconda3\envs\py27_32
+  set noswapfile
+endif
 " }}}
 
 
