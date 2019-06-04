@@ -183,6 +183,7 @@ inoremap <C-U> <C-G>u<C-U>
 " Map leader key to <SPACE>
 nnoremap <SPACE> <Nop>
 let mapleader="\<SPACE>"
+let maplocalleader=","
 
 map ; :
 inoremap jk <ESC>
@@ -252,6 +253,8 @@ Plug 'skywind3000/asyncrun.vim'
 " =======================================================================
 " LaTeX
 Plug 'lervag/vimtex', { 'for': 'tex' }
+" Markdown
+Plug 'gabrielelana/vim-markdown'
 " Python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -289,7 +292,7 @@ let g:rainbow_conf = {
 	\}
 
 " vim-airline/vim-airline
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -312,6 +315,8 @@ let g:AutoPairs={'(':')', '[':']', '{':'}'}
 
 " davidhalter/jedi-vim
 let g:jedi#rename_command="<leader>rn"
+let g:jedi#popup_on_dot=0
+set completeopt-=preview
 
 " junegunn/fzf.vim
 nmap <leader>p :Buffers<CR>
@@ -327,14 +332,16 @@ let g:vimtex_compiler_latexmk = {
       \ }
 let g:vimtex_compiler_callback_hooks = ['CopyFromTemp']
 function! CopyFromTemp(status)
-  if has('win32')
-    let l:srcname = b:vimtex.root . '\tmp\' . b:vimtex.name . '.pdf'
-    let l:desname = b:vimtex.root . '\' . b:vimtex.name . '.pdf'
-    silent exe '!start /B copy "' . l:srcname . '" "' . l:desname . '"'
-  else
-    let l:srcname = b:vimtex.root . '/tmp/' . b:vimtex.name . '.pdf'
-    let l:desname = b:vimtex.root . '/' . b:vimtex.name . '.pdf'
-    silent exe '!cp "' . l:srcname . '" "' . l:desname . '"'
+  if has('b:vimtex.root')
+    if has('win32')
+      let l:srcname = b:vimtex.root . '\tmp\' . b:vimtex.name . '.pdf'
+      let l:desname = b:vimtex.root . '\' . b:vimtex.name . '.pdf'
+      silent exe '!start /B copy "' . l:srcname . '" "' . l:desname . '"'
+    else
+      let l:srcname = b:vimtex.root . '/tmp/' . b:vimtex.name . '.pdf'
+      let l:desname = b:vimtex.root . '/' . b:vimtex.name . '.pdf'
+      silent exe '!cp "' . l:srcname . '" "' . l:desname . '"'
+    endif
   endif
 endfunction
 
@@ -353,6 +360,10 @@ if has('win32')
 else
   let g:vimtex_view_method = 'zathura'
 endif
+
+" gabrielelana/vim-markdown
+let g:markdown_enable_spell_checking = 0
+let g:markdown_mapping_switch_status = "<LocalLeader>s"
 
 
 " =======================================================================
