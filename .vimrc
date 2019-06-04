@@ -361,6 +361,9 @@ else
   let g:vimtex_view_method = 'zathura'
 endif
 
+" dhruvasagar/vim-table-mode
+let g:table_mode_corner = '|'
+
 " gabrielelana/vim-markdown
 let g:markdown_enable_spell_checking = 0
 let g:markdown_mapping_switch_status = "<LocalLeader>s"
