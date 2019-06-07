@@ -208,7 +208,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'SirVer/ultisnips'
 
 " send text from vim buffer to tmux buffer
-Plug 'sjl/tslime.vim'
+Plug 'lukelike/tslime.vim'
 
 Plug 'skywind3000/asyncrun.vim'
 " =======================================================================
@@ -297,7 +297,7 @@ let g:vimtex_compiler_latexmk = {
       \ }
 let g:vimtex_compiler_callback_hooks = ['CopyFromTemp']
 function! CopyFromTemp(status)
-  if has('b:vimtex.root')
+  if exists('b:vimtex.root')
     if has('win32')
       let l:srcname = b:vimtex.root . '\tmp\' . b:vimtex.name . '.pdf'
       let l:desname = b:vimtex.root . '\' . b:vimtex.name . '.pdf'
