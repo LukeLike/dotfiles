@@ -238,24 +238,24 @@ call plug#end()
 " luochen1990/rainbow
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-	\	'operators': '_,_',
-	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-	\	'separately': {
-	\   '*': 0,
-	\   'scheme': {
+  \	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+  \	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+  \	'operators': '_,_',
+  \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+  \	'separately': {
+  \   '*': 0,
+  \   'scheme': {
   \     'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 
   \                'darkorchid3'],
-	\		},
-	\		'lisp': {
-	\	    'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 
+  \   },
+  \		'lisp': {
+  \	    'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 
   \                'darkorchid3'],
-	\		},
+  \   },
   \   'html': 0,
-	\   'css': 0,
-	\ }
-	\}
+  \   'css': 0,
+  \ }
+  \}
 
 " vim-airline/vim-airline
 let g:airline#extensions#tabline#enabled = 0
