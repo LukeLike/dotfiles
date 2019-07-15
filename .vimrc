@@ -152,6 +152,7 @@ let maplocalleader=","
 
 map ; :
 inoremap jk <ESC>
+inoremap kj <ESC>
 
 nnoremap <expr> j v:count ? 'j' : 'gjzz'
 nnoremap <expr> k v:count ? 'k' : 'gkzz'
@@ -189,6 +190,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'easymotion/vim-easymotion'
 Plug 'lukelike/auto-pairs'
+Plug 'lukelike/vim-fcitx-switch'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -234,26 +236,25 @@ call plug#end()
 " Plugin Settings {{{
 " =======================================================================
 " luochen1990/rainbow
-let g:rainbow_active = 0
+let g:rainbow_active = 1
 let g:rainbow_conf = {
 	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
 	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 	\	'operators': '_,_',
 	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 	\	'separately': {
-	\		'*': {},
-	\		'tex': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+	\   '*': 0,
+	\   'scheme': {
+  \     'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 
+  \                'darkorchid3'],
 	\		},
 	\		'lisp': {
-	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+	\	    'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 
+  \                'darkorchid3'],
 	\		},
-	\		'vim': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-	\		},
-    \       'html': 0,
-	\		'css': 0,
-	\	}
+  \   'html': 0,
+	\   'css': 0,
+	\ }
 	\}
 
 " vim-airline/vim-airline
