@@ -131,6 +131,8 @@ endif
 
 let &t_Co=256
 
+set noshowmode
+
 " =======================================================================
 " }}}
 
@@ -284,6 +286,7 @@ let g:AutoPairs={'(':')', '[':']', '{':'}'}
 " davidhalter/jedi-vim
 let g:jedi#rename_command="<leader>rn"
 let g:jedi#popup_on_dot=0
+let g:jedi#show_call_signatures=2
 set completeopt-=preview
 
 " junegunn/fzf.vim
