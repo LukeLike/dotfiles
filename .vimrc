@@ -218,6 +218,8 @@ Plug 'skywind3000/asyncrun.vim'
 
 " Languages Plugins
 " =======================================================================
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " LaTeX
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Markdown
