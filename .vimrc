@@ -282,6 +282,7 @@ noremap <leader>r :AsyncRun<SPACE>
 
 " lukelike/auto-pairs
 let g:AutoPairs={'(':')', '[':']', '{':'}'}
+let g:AutoPairsMultilineClose=0
 
 " davidhalter/jedi-vim
 let g:jedi#rename_command="<leader>rn"
