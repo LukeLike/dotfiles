@@ -105,7 +105,7 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
   set incsearch " do incremental searching
-  colorscheme gruvbox
+  colorscheme Tomorrow-Night
   set background=dark
   set cursorline
   highlight Normal ctermbg=NONE
@@ -132,6 +132,10 @@ endif
 let &t_Co=256
 
 set noshowmode
+
+if has("termguicolors")
+  set termguicolors
+endif
 
 " =======================================================================
 " }}}
@@ -183,7 +187,7 @@ endif
 Plug 'luochen1990/rainbow'
 " status line
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'morhetz/gruvbox'
 " =======================================================================
 
 
@@ -227,6 +231,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Markdown
 Plug 'gabrielelana/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', {
+      \ 'do': { -> mkdp#util#install_sync() },
+      \ 'for' :['markdown', 'vim-plug'] }
 " Python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -250,11 +257,11 @@ let g:rainbow_conf = {
   \	'separately': {
   \   '*': 0,
   \   'scheme': {
-  \     'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 
+  \     'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick',
   \                'darkorchid3'],
   \   },
   \		'lisp': {
-  \	    'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 
+  \	    'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick',
   \                'darkorchid3'],
   \   },
   \   'html': 0,
@@ -268,7 +275,6 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.maxlinenr = ''
-let g:airline_theme='wombat'
 
 " scrooloose/nerdtree
 nmap <c-b> :NERDTreeToggle<CR>
@@ -341,6 +347,36 @@ let g:table_mode_corner = '|'
 let g:markdown_enable_spell_checking = 0
 let g:markdown_mapping_switch_status = "<LocalLeader>s"
 
+" iamcco/markdown-preview.nvim
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = ''
+if has("unix")
+  let g:mkdp_browser = 'google-chrome-stable'
+elseif has("win32")
+  let g:mkdp_browser = 'chrome.exe'
+endif
+let g:mkdp_echo_preview_url = 0
+let g:mkdp_browserfunc = ''
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1
+    \ }
+let g:mkdp_markdown_css = ''
+let g:mkdp_highlight_css = ''
+let g:mkdp_port = ''
+let g:mkdp_page_title = '${name}'
+
+" morhetz/gruvbox
+silent! colorscheme gruvbox
 
 " =======================================================================
 " }}}
