@@ -189,6 +189,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Editor Enhancement
 " =======================================================================
+Plug 'AndrewRadev/switch.vim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'easymotion/vim-easymotion'
 Plug 'lukelike/auto-pairs'
