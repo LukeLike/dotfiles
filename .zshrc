@@ -93,7 +93,9 @@ export TERM=xterm-256color
 
 # export CXX='/usr/bin/clang++'
 
-export PATH=~/bin:~/.npm-global/bin:$PATH
+mkdir -p $HOME/bin
+mkdir -p $HOME/.local/bin
+export PATH=$HOME/bin:$HOME/.npm-global/bin:$HOME/.local/bin:$PATH
 alias yd='ydcv -s'
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
