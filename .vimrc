@@ -397,7 +397,7 @@ vmap <leader>t <Plug>(neoterm-repl-send)
 nmap <leader>tt <Plug>(neoterm-repl-send-line)
 nmap <leader>ts :TREPLSetTerm
 
-" neoclide/coc.nvim
+" neoclide/coc.nvim {{{
 set updatetime=300
 set shortmess+=c
 inoremap <silent><expr> <TAB>
@@ -453,6 +453,13 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" }}}
+
+" coc-pairs
+autocmd FileType html let b:coc_pairs_disabled = ['<']
+autocmd FileType markdown let b:coc_pairs_disabled = ['`']
+autocmd FileType markdown let b:coc_pairs = [["$", "$"]]
+autocmd FileType tex let b:coc_pairs = [["$", "$"]]
 
 " SirVer/ultisnips
 let g:UltiSnipsExpandTrigger = "<nop>"
