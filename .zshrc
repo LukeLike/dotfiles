@@ -112,7 +112,7 @@ fi
 
 # source config files in .zshrc.d
 if [[ -d ~/.zshrc.d ]]; then
-    for i in ~/.zshrc.d/*.sh; do
+    for i in ~/.zshrc.d/*.(sh|zsh); do
         if [[ -f $i ]]; then
             source $i
         fi
