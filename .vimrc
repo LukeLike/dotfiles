@@ -196,7 +196,7 @@ Plug 'morhetz/gruvbox'
 Plug 'AndrewRadev/switch.vim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'easymotion/vim-easymotion'
-" Plug 'lukelike/auto-pairs'
+Plug 'lukelike/auto-pairs'
 Plug 'lukelike/vim-fcitx-switch'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -248,7 +248,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
   \ 'coc-css', 'coc-emmet', 'coc-emoji', 'coc-gocode', 'coc-html', 'coc-json',
-  \ 'coc-pairs', 'coc-python', 'coc-tag', 'coc-snippets', 'coc-vimlsp',
+  \ 'coc-python', 'coc-tag', 'coc-snippets', 'coc-vimlsp',
   \ 'coc-vimtex'
   \ ]
 call plug#end()
