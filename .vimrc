@@ -145,7 +145,7 @@ endif
 " =======================================================================
 
 " Don't use Ex mode, use Q for formatting
-map Q gq
+noremap Q gq
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -156,7 +156,7 @@ nnoremap <SPACE> <Nop>
 let mapleader="\<SPACE>"
 let maplocalleader=","
 
-map ; :
+noremap ; :
 inoremap jk <ESC>
 inoremap kj <ESC>
 
@@ -288,8 +288,8 @@ endif
 let g:airline_symbols.maxlinenr = ''
 
 " scrooloose/nerdtree
-nmap <c-b> :NERDTreeToggle<CR>
-imap <c-b> <ESC>:NERDTreeToggle<CR>
+nnoremap <c-b> :NERDTreeToggle<CR>
+inoremap <c-b> <ESC>:NERDTreeToggle<CR>
 let NERDTreeNodeDelimiter="\t"
 
 " skywind3000/asyncrun.vim
@@ -303,18 +303,18 @@ let g:AutoPairs={'(':')', '[':']', '{':'}'}
 let g:AutoPairsMultilineClose=0
 
 " davidhalter/jedi-vim
-let g:jedi#rename_command="<leader>rn"
+let g:jedi#rename_command="<leader>n"
 let g:jedi#popup_on_dot=0
 let g:jedi#show_call_signatures=2
 " set completeopt-=preview
 
 " junegunn/fzf.vim
-nmap <leader>p :Buffers<CR>
+nnoremap <leader>p :Buffers<CR>
 nmap <leader>o :Files<CR>
 
 " majutsushi/tagbar
 let g:airline#extensions#tagbar#enabled = 0
-nmap <leader>tb :TagbarToggle<CR>
+nnoremap <leader>tb :TagbarToggle<CR>
 
 " lervag/vimtex
 let g:vimtex_compiler_latexmk = {
@@ -392,10 +392,10 @@ let g:mkdp_page_title = '${name}'
 silent! colorscheme gruvbox
 
 " kassio/neoterm
-nmap <leader>t <Plug>(neoterm-repl-send)
-vmap <leader>t <Plug>(neoterm-repl-send)
-nmap <leader>tt <Plug>(neoterm-repl-send-line)
-nmap <leader>ts :TREPLSetTerm
+nnoremap <leader>t <Plug>(neoterm-repl-send)
+vnoremap <leader>t <Plug>(neoterm-repl-send)
+nnoremap <leader>tt <Plug>(neoterm-repl-send-line)
+nnoremap <leader>ts :TREPLSetTerm
 
 " neoclide/coc.nvim {{{
 set updatetime=300
@@ -430,7 +430,7 @@ function! s:show_documentation()
   endif
 endfunction
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>n <Plug>(coc-rename)
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
