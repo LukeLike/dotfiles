@@ -281,7 +281,7 @@ let g:rainbow_conf = {
   \}
 
 " vim-airline/vim-airline
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
