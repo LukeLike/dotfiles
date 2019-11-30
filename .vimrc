@@ -218,7 +218,8 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'SirVer/ultisnips'
 
 " send text from vim buffer to tmux buffer
-Plug 'lukelike/tslime.vim'
+" Plug 'lukelike/tslime.vim'
+Plug 'benmills/vimux'
 
 Plug 'skywind3000/asyncrun.vim'
 " =======================================================================
@@ -463,6 +464,21 @@ autocmd FileType tex let b:coc_pairs = [["$", "$"]]
 
 " SirVer/ultisnips
 let g:UltiSnipsExpandTrigger = "<nop>"
+
+" benmills/vimux
+command! -nargs=* TmuxRun :call VimuxRunCommand(<q-args>)
+nnoremap <leader>vr :TmuxRun<SPACE>
+nnoremap <leader>vp :VimuxPromptCommand<CR>
+nnoremap <leader>vl :VimuxRunLastCommand<CR>
+nnoremap <leader>vi :VimuxInspectRunner<CR>
+nnoremap <leader>vq :VimuxCloseRunner<CR>
+nnoremap <leader>vx :VimuxInterruptRunner<CR>
+nnoremap <leader>vz :call VimuxZoomRunner()<CR>
+function! VimuxSlime()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+endfunction
+vmap <c-c><c-c> "vy :call VimuxSlime()<CR>
 
 " =======================================================================
 " }}}
