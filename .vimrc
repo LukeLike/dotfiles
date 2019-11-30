@@ -457,10 +457,13 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " }}}
 
 " coc-pairs
-autocmd FileType html let b:coc_pairs_disabled = ['<']
-autocmd FileType markdown let b:coc_pairs_disabled = ['`']
-autocmd FileType markdown let b:coc_pairs = [["$", "$"]]
-autocmd FileType tex let b:coc_pairs = [["$", "$"]]
+augroup cocpairs
+  autocmd!
+  autocmd FileType html let b:coc_pairs_disabled = ['<']
+  autocmd FileType markdown let b:coc_pairs_disabled = ['`']
+  autocmd FileType markdown let b:coc_pairs = [["$", "$"]]
+  autocmd FileType tex let b:coc_pairs = [["$", "$"]]
+augroup END
 
 " SirVer/ultisnips
 let g:UltiSnipsExpandTrigger = "<nop>"
