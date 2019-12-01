@@ -469,7 +469,21 @@ augroup END
 let g:UltiSnipsExpandTrigger = "<nop>"
 
 " benmills/vimux
-command! -nargs=* TmuxRun :call VimuxRunCommand(<q-args>)
+function! TmuxRun(args)
+  let l:cmd = split(a:args)
+  let l:new_cmd = []
+  for item in l:cmd
+    if item =~# '^%.*'
+      let l:new_cmd = add(l:new_cmd, expand(item))
+    else
+      let l:new_cmd = add(l:new_cmd, item)
+    endif
+  endfor
+  let l:cmd_str = join(l:new_cmd, ' ')
+  echom l:cmd_str
+  call VimuxRunCommand(l:cmd_str)
+endfunction
+command! -nargs=* TmuxRun :call TmuxRun(<q-args>)
 nnoremap <leader>vr :TmuxRun<SPACE>
 nnoremap <leader>vp :VimuxPromptCommand<CR>
 nnoremap <leader>vl :VimuxRunLastCommand<CR>
