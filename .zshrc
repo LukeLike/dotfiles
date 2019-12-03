@@ -108,6 +108,8 @@ zstyle ':completion::complete:*' use-cache 1
 # Set dircolors
 if [[ -e ~/.dircolors ]]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    # apply dircolors for zsh completion
+    zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 fi
 
 # source config files in .zshrc.d
