@@ -106,8 +106,13 @@ alias docker_clear='docker rm -v $(docker ps -aq -f status=exited)'
 zstyle ':completion::complete:*' use-cache 1
 
 # Set dircolors
+if [[ "$(uname)" == "Darwin" ]]; then
+    dc_cmd="gdircolors"
+else
+    dc_cmd="dircolors"
+fi
 if [[ -e ~/.dircolors ]]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r ~/.dircolors && eval "$($dc_cmd -b ~/.dircolors)" || eval "$($dc_cmd -b)"
     # apply dircolors for zsh completion
     zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 fi
