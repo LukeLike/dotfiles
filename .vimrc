@@ -197,7 +197,8 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'easymotion/vim-easymotion'
 Plug 'lukelike/auto-pairs'
-Plug 'lukelike/vim-fcitx-switch'
+" Plug 'lukelike/vim-fcitx-switch'
+Plug 'lukelike/vim-im-select'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -328,6 +329,10 @@ function! CopyFromTemp(status)
       let l:srcname = b:vimtex.root . '\tmp\' . b:vimtex.name . '.pdf'
       let l:desname = b:vimtex.root . '\' . b:vimtex.name . '.pdf'
       silent exe '!start /B copy "' . l:srcname . '" "' . l:desname . '"'
+    elseif has('mac')
+      let l:srcname = b:vimtex.root . '/tmp/' . b:vimtex.name . '.pdf'
+      let l:desname = b:vimtex.root . '/' . b:vimtex.name . '.pdf'
+      silent exe '!gcp "' . l:srcname . '" "' . l:desname . '"'
     else
       let l:srcname = b:vimtex.root . '/tmp/' . b:vimtex.name . '.pdf'
       let l:desname = b:vimtex.root . '/' . b:vimtex.name . '.pdf'
@@ -348,6 +353,8 @@ if has('win32')
       \ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
       \ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
   let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+elseif has('mac')
+  let g:vimtex_view_method = 'skim'
 else
   let g:vimtex_view_method = 'zathura'
 endif
@@ -368,7 +375,7 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-if has("unix")
+if has("unix") && !has("mac")
   let g:mkdp_browser = 'google-chrome-stable'
 elseif has("win32")
   let g:mkdp_browser = 'chrome.exe'
