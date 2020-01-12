@@ -228,6 +228,7 @@ Plug 'skywind3000/asyncrun.vim'
 
 " Languages Plugins
 " =======================================================================
+Plug 'sheerun/vim-polyglot'
 " Go
 Plug 'fatih/vim-go'
 " LaTeX
@@ -249,9 +250,9 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " =======================================================================
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
-  \ 'coc-css', 'coc-emmet', 'coc-emoji', 'coc-gocode', 'coc-html', 'coc-json',
-  \ 'coc-python', 'coc-tag', 'coc-snippets', 'coc-vimlsp',
-  \ 'coc-vimtex'
+  \ 'coc-css', 'coc-emmet', 'coc-emoji', 'coc-gocode', 'coc-html',
+  \ 'coc-json', 'coc-python', 'coc-tag', 'coc-tsserver', 'coc-snippets',
+  \ 'coc-vimlsp', 'coc-vimtex'
   \ ]
 call plug#end()
 " =======================================================================
@@ -299,6 +300,8 @@ let g:asyncrun_mode=0
 let g:asyncrun_open=8
 noremap <C-j> :call asyncrun#quickfix_toggle(8)<cr>
 noremap <leader>r :AsyncRun<SPACE>
+noremap <leader>q :AsyncStop<cr>
+
 
 " lukelike/auto-pairs
 let g:AutoPairs={'(':')', '[':']', '{':'}'}
