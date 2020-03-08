@@ -137,6 +137,9 @@ if has("termguicolors")
   set termguicolors
 endif
 
+set splitbelow
+set splitright
+
 " =======================================================================
 " }}}
 
@@ -201,6 +204,7 @@ Plug 'lukelike/auto-pairs'
 Plug 'lukelike/vim-im-select'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 " =======================================================================
 
@@ -264,22 +268,18 @@ call plug#end()
 " luochen1990/rainbow
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-  \	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-  \	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+  \	'guifgs': ['#008787', '#d75f87', '#87af87', '#d75f00'],
+  \	'ctermfgs': [30, 168, 108, 166],
   \	'operators': '_,_',
   \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
   \	'separately': {
   \   '*': 0,
   \   'scheme': {
-  \     'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick',
-  \                'darkorchid3'],
+  \	    'guifgs': ['#008787', '#d75f87', '#87af87', '#d75f00']
   \   },
   \		'lisp': {
-  \	    'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick',
-  \                'darkorchid3'],
-  \   },
-  \   'html': 0,
-  \   'css': 0,
+  \	    'guifgs': ['#008787', '#d75f87', '#87af87', '#d75f00']
+  \   }
   \ }
   \}
 
@@ -411,10 +411,10 @@ nnoremap <leader>ts :TREPLSetTerm
 " neoclide/coc.nvim {{{
 set updatetime=300
 set shortmess+=c
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -476,7 +476,7 @@ augroup cocpairs
 augroup END
 
 " SirVer/ultisnips
-let g:UltiSnipsExpandTrigger = "<nop>"
+" let g:UltiSnipsExpandTrigger = "<nop>"
 
 " benmills/vimux
 function! TmuxRun(args)
@@ -507,6 +507,9 @@ function! VimuxSlime()
 endfunction
 vmap <c-c><c-c> "vy :call VimuxSlime()<CR>
 
+" sheerun/vim-polyglot
+let g:polyglot_disabled = ['latex']
+
 " =======================================================================
 " }}}
 
@@ -525,7 +528,9 @@ if has("gui_running")
   set columns=85
   set clipboard=unnamed,unnamedplus
   " disable IME when entering Normal mode
-  set noimdisable
+  if has('win32')
+    set noimdisable
+  endif
   " support for formating CJK characters
   set formatoptions+=mB
 
