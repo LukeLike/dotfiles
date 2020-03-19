@@ -172,6 +172,44 @@ vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 " <Ctrl-l> redraws the screen and REMOVES ANY SEARCH HIGHLIGHTING
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
+" leader keymap
+" basic
+nnoremap <leader>rl :source ~/.vimrc<cr>
+nnoremap <leader>xc :qa<cr>
+nnoremap <leader>xf :e<space>
+nnoremap <leader>xw :saveas<space>
+nnoremap <leader>xs :w<cr>
+" buffer management
+nnoremap <leader>xb :Buffers<cr>
+nnoremap <leader>kb :bd<space>%<cr>
+" toggle
+nnoremap <leader>tb :NERDTreeToggle<cr>
+nnoremap <leader>tp :call asyncrun#quickfix_toggle(8)<cr>
+" edit functions
+vnoremap <leader>aa "+y
+vnoremap <leader>pp "+p
+nnoremap <leader>pp "+p
+nnoremap <leader>xh ggVG
+" search
+nnoremap <leader>qq :Rg<space>
+"" TODO: open recent
+" pane management and navigation
+nnoremap <leader>x1 :only<cr>
+nnoremap <leader>x2 :vs<cr>
+nnoremap <leader>x3 :sp<cr>
+nnoremap <leader>rw <c-w><c-r>
+nnoremap <leader>1 :exe 1."wincmd w"<cr>
+nnoremap <leader>2 :exe 2."wincmd w"<cr>
+nnoremap <leader>3 :exe 3."wincmd w"<cr>
+nnoremap <leader>4 :exe 4."wincmd w"<cr>
+nnoremap <leader>5 :exe 5."wincmd w"<cr>
+nnoremap <leader>6 :exe 6."wincmd w"<cr>
+nnoremap <leader>7 :exe 7."wincmd w"<cr>
+nnoremap <leader>8 :exe 8."wincmd w"<cr>
+nnoremap <leader>9 :exe 9."wincmd w"<cr>
+
+
+
 " =======================================================================
 " }}}
 
@@ -202,6 +240,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'lukelike/auto-pairs'
 " Plug 'lukelike/vim-fcitx-switch'
 Plug 'lukelike/vim-im-select'
+Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
@@ -211,6 +250,7 @@ Plug 'tpope/vim-surround'
 
 " Additional Functionalities
 " =======================================================================
+Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'kassio/neoterm'
@@ -289,16 +329,28 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.maxlinenr = ''
+" add winnr to status line
+function! WindowNumber(...)
+  let builder = a:1
+  let context = a:2
+  call builder.add_section('airline_b', '%{tabpagewinnr(tabpagenr())}')
+  return 0
+endfunction
+if !exists("g:luke_airline_winnr_loaded")
+  call airline#add_statusline_func('WindowNumber')
+  call airline#add_inactive_statusline_func('WindowNumber')
+endif
+let g:luke_airline_winnr_loaded = 1
 
 " scrooloose/nerdtree
-nnoremap <c-b> :NERDTreeToggle<CR>
-inoremap <c-b> <ESC>:NERDTreeToggle<CR>
+" nnoremap <c-b> :NERDTreeToggle<CR>
+" inoremap <c-b> <ESC>:NERDTreeToggle<CR>
 let NERDTreeNodeDelimiter="\t"
 
 " skywind3000/asyncrun.vim
 let g:asyncrun_mode=0
 let g:asyncrun_open=8
-noremap <C-j> :call asyncrun#quickfix_toggle(8)<cr>
+" noremap <C-j> :call asyncrun#quickfix_toggle(8)<cr>
 noremap <leader>r :AsyncRun<SPACE>
 noremap <leader>q :AsyncStop<cr>
 
@@ -319,7 +371,7 @@ nmap <leader>o :Files<CR>
 
 " majutsushi/tagbar
 let g:airline#extensions#tagbar#enabled = 0
-nnoremap <leader>tb :TagbarToggle<CR>
+nnoremap <leader>tag :TagbarToggle<CR>
 
 " lervag/vimtex
 let g:vimtex_compiler_latexmk = {
@@ -403,10 +455,10 @@ let g:mkdp_page_title = '${name}'
 silent! colorscheme gruvbox
 
 " kassio/neoterm
-nnoremap <leader>t <Plug>(neoterm-repl-send)
-vnoremap <leader>t <Plug>(neoterm-repl-send)
-nnoremap <leader>tt <Plug>(neoterm-repl-send-line)
-nnoremap <leader>ts :TREPLSetTerm
+" nnoremap <leader>t <Plug>(neoterm-repl-send)
+" vnoremap <leader>t <Plug>(neoterm-repl-send)
+" nnoremap <leader>tt <Plug>(neoterm-repl-send-line)
+" nnoremap <leader>ts :TREPLSetTerm
 
 " neoclide/coc.nvim {{{
 set updatetime=300
