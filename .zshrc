@@ -99,6 +99,23 @@ export PATH=$HOME/bin:$HOME/.npm-global/bin:$HOME/.local/bin:$PATH
 alias yd='ydcv -s'
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
+
+# personal setopt {{{
+# http://zsh.sourceforge.net/Doc/Release/Options.html
+
+# autocd: If a command is issued that can’t be executed as a normal command,
+#         and the command is the name of a directory, perform the cd command to
+#         that directory.
+# Do not want it because name of dir might conflict with command name.
+unsetopt autocd
+
+# autopushd: Make cd push the old directory onto the directory stack.
+# Do not want it because I tend to manually manage the dir stack.
+unsetopt autopushd
+
+# }}} setopt (end)
+
+
 # Docker
 alias docker_init='export DOCKER_HOST=tcp://$(cd /mnt/c && docker-machine.exe ip):2376'
 alias docker_clear='docker rm -v $(docker ps -aq -f status=exited)'
