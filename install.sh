@@ -34,6 +34,11 @@ dispatch_by_os "mkdir_cmd"
 ln_cmd="ln"
 dispatch_by_os "ln_cmd"
 
+# In case .gitconfig.\~1\~ already exists
+if [ -e ~/.gitconfig ]; then
+    $mv_cmd ~/.gitconfig ~/.gitconfig.luke_bak
+fi
+
 # Copy configuration files
 $cp_cmd -rf --backup=numbered ./ ~/
 cd ~/
@@ -41,8 +46,8 @@ $rm_cmd install.sh README.md archive.sh
 $rm_cmd -rf .git
 
 # Do not override git settings
-if [ -e ~/.gitconfig.\~1\~ ]; then
-    $mv_cmd ~/.gitconfig.\~1\~ ~/.gitconfig
+if [ -e ~/.gitconfig.luke_bak ]; then
+    $mv_cmd ~/.gitconfig.luke_bak ~/.gitconfig
 fi
 
 
