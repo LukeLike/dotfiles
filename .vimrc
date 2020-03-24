@@ -260,7 +260,10 @@ Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " snippets
-Plug 'SirVer/ultisnips'
+if has("python3")
+  Plug 'SirVer/ultisnips'
+endif
+
 
 " send text from vim buffer to tmux buffer
 " Plug 'lukelike/tslime.vim'
@@ -274,7 +277,9 @@ Plug 'skywind3000/asyncrun.vim'
 " =======================================================================
 Plug 'sheerun/vim-polyglot'
 " Go
-Plug 'fatih/vim-go'
+if has("patch-8.0-1453") || has("nvim")
+  Plug 'fatih/vim-go'
+endif
 " LaTeX
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Markdown
