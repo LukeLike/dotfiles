@@ -1,5 +1,9 @@
 if has('win32')
-    noremap <leader>b :AsyncRun activate luke_env && python %<CR>
+    noremap <localleader>bb :AsyncRun -raw activate luke_env && python %<CR>
 else
-    noremap <leader>b :AsyncRun python %<CR>
+    noremap <localleader>bb :AsyncRun -raw python3 %<CR>
 endif
+
+noremap <localleader>tt :TmuxRun python3 %<CR>
+
+let $PYTHONUNBUFFERED = 1

@@ -356,8 +356,8 @@ let NERDTreeNodeDelimiter="\t"
 let g:asyncrun_mode=0
 let g:asyncrun_open=8
 " noremap <C-j> :call asyncrun#quickfix_toggle(8)<cr>
-noremap <leader>r :AsyncRun<SPACE>
-noremap <leader>q :AsyncStop<cr>
+noremap <leader>rr :AsyncRun<SPACE>
+noremap <leader>rq :AsyncStop<cr>
 
 
 " lukelike/auto-pairs
