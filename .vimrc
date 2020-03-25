@@ -176,7 +176,7 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " basic
 nnoremap <leader>rl :source ~/.vimrc<cr>
 nnoremap <leader>xc :qa<cr>
-nnoremap <leader>xf :e<space>
+nnoremap <leader>xf :Files<cr>
 nnoremap <leader>xw :saveas<space>
 nnoremap <leader>xs :w<cr>
 " buffer management
