@@ -4,8 +4,10 @@
 [core]
 	editor = vim
 [alias]
-	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+    ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
     d = "difftool"
+    root = rev-parse --show-toplevel
+    who = "shortlog -sn"
 [diff]
 	tool = vimdiff
 [difftool]
