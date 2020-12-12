@@ -1,3 +1,7 @@
+if !empty(glob("$HOME/.vimrc.local.pre"))
+  source $HOME/.vimrc.local.pre
+endif
+
 " Basic vim settings {{{
 " =======================================================================
 
@@ -44,6 +48,9 @@ if has("autocmd")
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
+
+  autocmd BufEnter *.sch setlocal filetype=scheme
+  autocmd BufEnter .ydcv setlocal filetype=dosini
 
   augroup END
 
@@ -116,9 +123,9 @@ set ruler " show the cursor position all the time
 set showcmd " display incomplete commands
 
 set number
-if exists('&relativenumber')
-  set relativenumber
-endif
+" if exists('&relativenumber')
+"   set relativenumber
+" endif
 
 set laststatus=2
 set smartindent
@@ -163,8 +170,8 @@ noremap ; :
 inoremap jk <ESC>
 inoremap kj <ESC>
 
-nnoremap <expr> j v:count ? 'j' : 'gjzz'
-nnoremap <expr> k v:count ? 'k' : 'gkzz'
+" nnoremap <expr> j v:count ? 'j' : 'gjzz'
+" nnoremap <expr> k v:count ? 'k' : 'gkzz'
 
 " search selected text in visual mode
 vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
@@ -177,8 +184,10 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 nnoremap <leader>rl :source ~/.vimrc<cr>
 nnoremap <leader>xc :qa<cr>
 nnoremap <leader>xf :Files<cr>
-nnoremap <leader>xw :saveas<space>
+nnoremap <leader>xm :
 nnoremap <leader>xs :w<cr>
+nnoremap <leader>xw :saveas<space>
+nnoremap <leader>xz <c-z>
 " buffer management
 nnoremap <leader>xb :Buffers<cr>
 nnoremap <leader>kb :bd<space>%<cr>
@@ -187,6 +196,7 @@ nnoremap <leader>tb :NERDTreeToggle<cr>
 nnoremap <leader>tp :call asyncrun#quickfix_toggle(8)<cr>
 " edit functions
 vnoremap <leader>aa "+y
+nnoremap <leader>aa "+y
 vnoremap <leader>pp "+p
 nnoremap <leader>pp "+p
 nnoremap <leader>xh ggVG
@@ -195,8 +205,10 @@ nnoremap <leader>qq :Rg<space>
 "" TODO: open recent
 " pane management and navigation
 nnoremap <leader>x1 :only<cr>
-nnoremap <leader>x2 :vs<cr>
-nnoremap <leader>x3 :sp<cr>
+nnoremap <leader>x2 :sp<cr>
+nnoremap <leader>x- :sp<cr>
+nnoremap <leader>x3 :vs<cr>
+nnoremap <leader>x\ :vs<cr>
 nnoremap <leader>rw <c-w><c-r>
 nnoremap <leader>1 :exe 1."wincmd w"<cr>
 nnoremap <leader>2 :exe 2."wincmd w"<cr>
@@ -207,7 +219,9 @@ nnoremap <leader>6 :exe 6."wincmd w"<cr>
 nnoremap <leader>7 :exe 7."wincmd w"<cr>
 nnoremap <leader>8 :exe 8."wincmd w"<cr>
 nnoremap <leader>9 :exe 9."wincmd w"<cr>
-
+" toggle diff
+nnoremap <leader>wdt :windo diffthis<CR>
+nnoremap <leader>wdo :windo diffoff<CR>
 
 
 " =======================================================================
@@ -270,20 +284,25 @@ endif
 Plug 'benmills/vimux'
 
 Plug 'skywind3000/asyncrun.vim'
+
+Plug 'jceb/vim-orgmode'
 " =======================================================================
 
 
 " Languages Plugins
 " =======================================================================
+" sheerun/vim-polyglot
+let g:polyglot_disabled = ['latex']
 Plug 'sheerun/vim-polyglot'
 " Go
 if has("patch-8.0-1453") || has("nvim")
   Plug 'fatih/vim-go'
 endif
 " LaTeX
-Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'lervag/vimtex'
 " Markdown
-Plug 'gabrielelana/vim-markdown'
+" Plug 'gabrielelana/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', {
       \ 'do': { -> mkdp#util#install_sync() },
       \ 'for' :['markdown', 'vim-plug'] }
@@ -301,7 +320,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
   \ 'coc-css', 'coc-emmet', 'coc-emoji', 'coc-gocode', 'coc-html',
   \ 'coc-json', 'coc-python', 'coc-tag', 'coc-tsserver', 'coc-snippets',
-  \ 'coc-vimlsp', 'coc-vimtex'
+  \ 'coc-vimlsp', 'coc-vimtex', 'coc-sql'
   \ ]
 call plug#end()
 " =======================================================================
@@ -427,6 +446,8 @@ let g:table_mode_map_prefix = '<LocalLeader>t'
 let g:markdown_enable_input_abbreviations = 0
 let g:markdown_enable_spell_checking = 0
 let g:markdown_mapping_switch_status = "<LocalLeader>s"
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_folding_disabled = 1
 
 " iamcco/markdown-preview.nvim
 let g:mkdp_auto_start = 0
@@ -480,9 +501,9 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" :
       \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Navigate diagnostics
+nmap <silent> ,pe <Plug>(coc-diagnostic-prev)
+nmap <silent> ,ne <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -498,10 +519,10 @@ function! s:show_documentation()
   endif
 endfunction
 " Remap for rename current word
-nmap <leader>n <Plug>(coc-rename)
+nmap <leader>cn <Plug>(coc-rename)
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format)
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -521,6 +542,13 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" Restart coc
+nmap <leader>cr :CocRestart<CR>
+" Scroll floating window
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 " }}}
 
 " coc-pairs
@@ -563,9 +591,6 @@ function! VimuxSlime()
   call VimuxSendKeys("Enter")
 endfunction
 vmap <c-c><c-c> "vy :call VimuxSlime()<CR>
-
-" sheerun/vim-polyglot
-let g:polyglot_disabled = ['latex']
 
 " =======================================================================
 " }}}
