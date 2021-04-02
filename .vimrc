@@ -286,6 +286,8 @@ Plug 'benmills/vimux'
 Plug 'skywind3000/asyncrun.vim'
 
 Plug 'jceb/vim-orgmode'
+
+Plug 'samoshkin/vim-mergetool'
 " =======================================================================
 
 
@@ -591,6 +593,10 @@ function! VimuxSlime()
   call VimuxSendKeys("Enter")
 endfunction
 vmap <c-c><c-c> "vy :call VimuxSlime()<CR>
+
+" samoshkin/vim-mergetool
+let g:mergetool_layout = 'mr'
+let g:mergetool_prefer_revision = 'local'
 
 " =======================================================================
 " }}}
