@@ -448,6 +448,7 @@ let g:table_mode_map_prefix = '<LocalLeader>t'
 let g:markdown_enable_input_abbreviations = 0
 let g:markdown_enable_spell_checking = 0
 let g:markdown_mapping_switch_status = "<LocalLeader>s"
+let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_folding_disabled = 1
 
