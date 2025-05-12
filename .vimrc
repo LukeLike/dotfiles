@@ -84,7 +84,9 @@ set nobackup
 
 " file encoding
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936;
-set termencoding=utf-8
+if !has('nvim-0.11')
+  set termencoding=utf-8
+endif
 set encoding=utf-8
 
 " set the number of spaces for an indent level to 4
@@ -367,6 +369,14 @@ if !exists("g:luke_airline_winnr_loaded")
   call airline#add_inactive_statusline_func('WindowNumber')
 endif
 let g:luke_airline_winnr_loaded = 1
+
+function! s:update_highlights()
+  if has('nvim-0.11')
+    hi StatusLine    cterm=NONE gui=NONE
+    hi StatusLineNC  cterm=NONE gui=NONE 
+  endif
+endfunction
+autocmd User AirlineAfterTheme call s:update_highlights()
 
 " scrooloose/nerdtree
 " nnoremap <c-b> :NERDTreeToggle<CR>
